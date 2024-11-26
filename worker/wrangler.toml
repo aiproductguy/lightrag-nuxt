@@ -1,0 +1,35 @@
+name = "kv-vector-store"
+main = "src/index.ts"
+compatibility_date = "2024-11-25"
+
+# KV Namespaces
+kv_namespaces = [
+  { binding = "DOCUMENTS", id = "1790ae92d6624df69f85181e1737d978" },
+  { binding = "CACHE", id = "1790ae92d6624df69f85181e1737d978" }
+]
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "kv-vector-store"
+database_id = "32771b18-57f1-45c3-bf2f-c4631c439a83"
+
+# Vectorize Database
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "kvvectorstore-v2"
+
+# AI Binding
+[ai]
+binding = "AI"
+
+# AI Models
+[[ai.models]]
+name = "@cf/baai/bge-base-en-v1.5"
+
+[vars]
+NUXT_CF_ACCOUNT_ID = "f26bd04ac74daa191040b61d811d2a2c"
+NUXT_CF_WORKER_URL = "https://kv-vector-store.aiproductguy.workers.dev/"
+
+# Secrets that should be set using `wrangler secret put`
+# NUXT_CF_API_TOKEN

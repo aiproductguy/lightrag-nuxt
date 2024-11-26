@@ -1,0 +1,1 @@
+{"name":"kv-vector-store","version":"1.0.0","private":true,"scripts":{"deploy":"wrangler deploy","dev":"wrangler dev","start":"wrangler dev"},"dependencies":{"@cloudflare/ai":"^1.0.22","@supabase/supabase-js":"^2.39.0","base64-js":"^1.5.1","gsap":"^3.12.5","hono":"^3.11.7"},"devDependencies":{"@cloudflare/workers-types":"^4.20231218.0","typescript":"^5.3.3","wrangler":"^3.90.0"}}
