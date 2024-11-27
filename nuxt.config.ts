@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -8,13 +9,6 @@ export default defineNuxtConfig({
   ],
 
   css: ['~/assets/css/main.css'],
-
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
 
   colorMode: {
     classSuffix: '',
@@ -41,6 +35,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'netlify',
     devProxy: {
       '/api': {
         target: 'https://kv-vector-store.aiproductguy.workers.dev',
@@ -49,11 +44,24 @@ export default defineNuxtConfig({
     }
   },
 
+  routeRules: {
+    '/**': { ssr: true }
+  },
+
   runtimeConfig: {
     public: {
       workerUrl: process.env.WORKER_URL || 'https://kv-vector-store.aiproductguy.workers.dev'
     }
   },
 
-  compatibilityDate: '2024-11-25'
+  compatibilityDate: '2024-11-25',
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+      'postcss-nested': {},
+      // Add other PostCSS plugins here
+    },
+  },
 })

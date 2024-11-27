@@ -14,7 +14,8 @@ dist-ssr
 
 .nuxt
 .env
-*/.wrangler/
+*.output
+*.wrangler/
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +27,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify
+
+# Nitro output
+.output
+.data
+
+# Nuxt generate
+dist
+
+# Service worker
+sw.*
+
+# Cloudflare
+.wrangler
+.dev.vars

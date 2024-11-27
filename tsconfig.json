@@ -1,8 +1,13 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
-    "types": ["@pinia/nuxt", "@vueuse/nuxt"]
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   }
 }
