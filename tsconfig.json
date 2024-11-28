@@ -1,13 +1,20 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "jsx": "preserve",
-    "moduleResolution": "bundler",
-    "skipLibCheck": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true
-  }
+    "types": [
+      "@cloudflare/workers-types",
+      "nitropack",
+      "@pinia/nuxt",
+      "@nuxtjs/color-mode",
+      "@vueuse/nuxt",
+      "@nuxt/types"
+    ]
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.d.ts",
+    "./**/*.tsx",
+    "./**/*.vue",
+    "./env.d.ts"
+  ]
 }

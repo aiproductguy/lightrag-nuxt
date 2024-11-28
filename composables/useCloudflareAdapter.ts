@@ -1,4 +1,5 @@
 import { ref, computed } from 'vue'
+import { useRuntimeConfig } from '#app'
 
 interface CloudflareConfig {
   accountId: string
@@ -7,14 +8,16 @@ interface CloudflareConfig {
 }
 
 export function useCloudflareAdapter() {
-  const config = ref<CloudflareConfig>({
-    accountId: import.meta.env.CF_ACCOUNT_ID,
-    apiToken: import.meta.env.CF_API_TOKEN,
-    workerUrl: import.meta.env.CF_WORKER_URL
+  const config = useRuntimeConfig()
+  
+  const cloudflareConfig = ref<CloudflareConfig>({
+    accountId: config.public.cfAccountId as string,
+    apiToken: config.cfApiToken as string,
+    workerUrl: config.public.cfWorkerUrl as string
   })
 
   const isConfigured = computed(() => {
-    return Boolean(config.value.accountId && config.value.apiToken && config.value.workerUrl)
+    return Boolean(cloudflareConfig.value.accountId && cloudflareConfig.value.apiToken && cloudflareConfig.value.workerUrl)
   })
 
   const makeRequest = async <T>(
@@ -26,10 +29,10 @@ export function useCloudflareAdapter() {
     }
 
     const headers = new Headers(options.headers)
-    headers.set('Authorization', `Bearer ${config.value.apiToken}`)
+    headers.set('Authorization', `Bearer ${cloudflareConfig.value.apiToken}`)
     headers.set('Content-Type', 'application/json')
 
-    const response = await fetch(`${config.value.workerUrl}${endpoint}`, {
+    const response = await fetch(`${cloudflareConfig.value.workerUrl}${endpoint}`, {
       ...options,
       headers
     })
@@ -43,6 +46,7 @@ export function useCloudflareAdapter() {
 
   return {
     config,
+    cloudflareConfig,
     isConfigured,
     makeRequest
   }

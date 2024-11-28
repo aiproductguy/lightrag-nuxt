@@ -28,8 +28,10 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local Netlify folder
-.netlify
+# Local env files
+.env
+.env.*
+!.env.example
 
 # Nitro output
 .output
@@ -44,3 +46,4 @@ sw.*
 # Cloudflare
 .wrangler
 .dev.vars
+.cloudflare/
